@@ -1,0 +1,34 @@
+<!--pages/wxs/wxs.wxml-->
+<!-- 1、直接在wxml中定义 -->
+<!-- <wxs module="info">
+  //JS代码
+  var message = "Hello World";
+  var name = "coderwhy";
+  var sum = function(num1, num2) {
+    return num1+num2;
+  }
+  // commonjs的模块化导出的写法 
+  module.exports={
+    message:message,
+    name:name,
+    sum:sum,
+    test:test()
+  }
+  function test(){
+    return "test function"
+  }
+</wxs> -->
+<!-- 2、定义在单独的wxs文件中，再使用wxs导入 -->
+<wxs src="../../wxs/info.wxs" module="info" />
+
+
+<view> {{info.message}}</view>
+<view> {{info.name}}</view>
+<view> {{info.sum(10,20)}}</view>
+<view> {{info.test}}</view>
+
+<!-- wxs的应用 -->
+<view>{{price}}</view>
+<wxs src="../../wxs/format.wxs" module="format"/>
+<view>{{format.pirceFomat(28.999)}}</view>
+<view>{{format.dateFormat(1560598160,'yyyy/MM/dd hh:mm:ss')}}</view>

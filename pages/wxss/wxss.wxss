@@ -1,0 +1,9 @@
+/* pages/wxss/wxss.wxss */
+/* .box{
+  color: red;
+  font-size:55px;
+} */
+@import './style/box.wxss';
+.timecolor{
+  color: red;
+}

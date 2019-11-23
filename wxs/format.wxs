@@ -1,0 +1,55 @@
+// 价格格式化
+function pirceFomat(price,number){
+  // 如果number有值，就赋值给var number的值，如果没有值，就把2赋值给number
+  var number=number||2;
+  // 如果是字符串，先转成浮点型
+  var f_price=parseFloat(price);
+  // 保留几位小数
+  return f_price.toFixed(number);
+}
+
+
+// 时间戳格式化
+function dateFormat(timestamp,format){
+  if (!format) {
+    format = "yyyy-MM-dd hh:mn:ss";
+  }
+  timestamp = parseInt(timestamp * 1000);
+  var realDate = getDate(timestamp);
+
+  function timeFormat(num) {
+    return num < 10 ? '0' + num : num;
+  }
+  var date = [
+    ["M+", timeFormat(realDate.getMonth() + 1)],
+    ["d+", timeFormat(realDate.getDate())],
+    ["h+", timeFormat(realDate.getHours())],
+    ["m+", timeFormat(realDate.getMinutes())],
+    ["s+", timeFormat(realDate.getSeconds())],
+    ["q+", Math.floor((realDate.getMonth() + 3) / 3)
+    ],
+    ["s+", realDate.getMilliseconds()],
+  ];
+  var regYear = getRegExp("(y+)", "i");
+  var reg1 = regYear.exec(format);
+  // console.log(reg1[0]); 
+  if (reg1) {
+    format = format.replace(reg1[1], (realDate.getFullYear() + '').substring(4 -
+      reg1[1].length));
+  }
+  for (var i = 0; i < date.length; i++) {
+    var k = date[i][0];
+    var v = date[i][1];
+    var reg2 = getRegExp("(" + k + ")").exec(format);
+    if (reg2) {
+      format = format.replace(reg2[1], reg2[1].length == 1 ?
+        v : ("00" + v).substring(("" + v).length));
+    }
+  }
+  return format;
+}
+
+module.exports={
+  pirceFomat:pirceFomat,
+  dateFormat: dateFormat
+}

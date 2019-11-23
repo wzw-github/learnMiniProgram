@@ -1,0 +1,86 @@
+<!--pages/wxss/wxss.wxml-->
+<!-- 设置样式的三种方式 -->
+<!-- 行内样式（内联样式） -->
+<view style="color:red;font-size:50px">哈哈</view>
+
+<!-- 页内样式 -->
+<view class="box">啦啦</view>
+
+
+<!-- 全局样式 -->
+<view >嘿嘿</view>
+<button bindtap="changecolor" size="mini">点击换下面的字体颜色</button>
+<view class="{{isActive?'timecolor':''}}">{{colortest}}</view>
+
+<view>--------------------条件判断---------------------</view>
+<!-- wx:if -->
+<button bindtap="handleSwitchShow">点击切换isShow</button>
+<view wx:if="{{isShow}}">{{isShow}}</view>
+
+<!-- wx:else -->
+<button size="mini" bindtap="handleIncrement">分数递增6分</button>
+<button size="mini" bindtap="handleDecrease">分数递减6分</button>
+<view wx:if="{{score>=90}}">大于90</view>
+<view wx:elif="{{score>=80}}">大于等于80</view>
+<view wx:elif="{{score>=60}}">大于等于60</view>
+<view wx:else>小于60</view>
+
+
+<!-- wx:if在显示隐藏切换频率低的时候选择
+      hidden在显示隐藏频率高的时候选择
+ -->
+<view>--------------hidden属性--------------</view>
+<!-- wx:if隐藏的时候，该组件就不创建 -->
+<view wx:if="{{false}}">wx:if控制hidden内容</view>
+<!-- hidden隐藏的时候，该组件是存在的，只是改变了display的状态 -->
+<view hidden="{{true}}">hidden控制hidden内容</view>
+
+
+<view>----------wx:for遍历/循环</view>
+<view wx:for="{{['1231','jhghjb','87894']}}">{{item}}  {{index}}</view>
+<view wx:for="nishizhuma">{{item}}  {{index}}</view>
+<view wx:for="今天是星期几">{{item}}  {{index}}</view>
+
+
+<!-- block是一个标签，不会被渲染，所以性能方面比view高 -->
+<view wx:for="{{3}}" wx:key="{{item}}">
+  <button>我是按钮</button>
+  <view>我是视图</view>
+  <text>我是内容</text>
+</view>
+
+<block wx:for="{{3}}" wx:key="{{item}}">
+  <button>我是按钮</button>
+  <view>我是视图</view>
+  <text>我是内容</text>
+</block>
+
+
+<!-- 给item和index起名字 -->
+<view wx:for="你好啊哈哈" wx:key wx:for-item="name" wx:for-index="num">
+{{name}}   {{num}}</view>
+
+
+<block wx:for="{{name}}" wx:key  wx:for-item="item1">
+  <block wx:for="{{item1}}" wx:key wx:for-item="item2">
+    <view>{{item2}}</view>
+  </block>
+</block>
+
+
+<view>--------template，模板在使用前不会被渲染-------</view>
+<!-- template,之前小程序不支持自定义组件，为了进行代码的复用：template -->
+<!-- <template name="contentItem">
+  <button>{{btnText}}</button>
+  <view>{{context}}</view>
+</template> -->
+<!-- importdaoru :
+    1、主要是导入template
+    2、特点，不能进行递归导入
+    include:
+    1、将公共的wxml中的组件抽取到一个文件中，
+    2、特点：不能导入template/wxs，可以进行递归导入
+ -->
+<import src="/wxml/template.wxml" />
+<template is="contentItem" data="{{btnText:'按1钮',context:'哈1哈'}}" />
+

@@ -1,2 +1,45 @@
 <!--pages/home/home.wxml-->
-<text>pages/home/home.wxml</text>
+<!-- 1、小程序数据绑定：{{}} -> Mustache语法 -->
+<view>姓名：{{name}}</view>
+<view>年龄：{{age}}</view>
+
+<!-- 2、列表展示: wx:for -->
+<view wx:for="{{students}}">{{item.name}}--{{item.age}}</view>
+
+<!-- 3、事件监听改变data -->
+<view>计数：{{counter}}</view>
+<button size="mini" bindtap="handleBtnClick">+</button>
+<button size="mini" bindtap="handleSubtraction">-</button>
+<!-- 获取用户方式授权 -->
+<button size="mini" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+<!-- 展示用户信息方式 -->
+<open-data type="userNickName"></open-data>
+<view bindtap="handleBtnClick">{{name}}</view>
+
+
+<!-- 事件 -->
+<button bindtap="clickBtn" size="mini">1、bindtap</button>
+<button bind:tap="clickBtn" size="mini">2、bind：tap</button>
+<button catch:tap="clickBtn" size="mini">3、catch:tap</button>
+
+<!-- 常见的事件 -->
+<view class="box" bind:touchstart="handleTouchStart" bind:touchmove="handleTouchMove" bind:touchend="handleTouchEnd
+  bind:tap=" handleTap "
+  bind:longpress="handleLongpress "
+>ssss</view>
+
+<!-- 事件对象分析 -->
+
+
+
+<!-- 事件的传递参数,通过data-传递指定的值 -->
+<view class="container">
+  <block wx:for="{{titles}}" wx:key="{{index}}">
+    <view class="item" bindtap="handleItemClick"
+    data-index="{{index}}" data-item="{{item}}">
+    {{item}}</view>
+  </block>
+</view>
+
+
+<!-- 事件冒泡和事件捕获，事件分为 -->

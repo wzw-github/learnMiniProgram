@@ -1,0 +1,59 @@
+<!--pages/components/compontentsTest.wxml-->
+
+<view class="title">页面内容</view>
+
+
+<!-- 自定义组件的使用 -->
+<!-- <my-cpn></my-cpn>
+<my-cpn/> -->
+
+<!-- 自定义组件的样式细节 -->
+<!-- <my-style/> -->
+
+
+<!-- 给自定义组件传递数据/样式 -->
+<my-prop title="标题1" content="内容1" titleclass="red"/>
+<my-prop title="标题2" content="内容2" titleclass="green"/>
+<my-prop title="标题3" content="内容3" titleclass="blue"/>
+
+<my-prop/>
+
+<!-- 组件内部发生事件 -->
+<view>当前计数{{count}}</view>
+<my-event bind:increment="handleIncrement"/>
+
+
+<!-- tab-control练习 -->
+<w-tab-control titles="{{['衣服','裤子','鞋子','帽子']}}"
+bind:itemclick="handleTabClick"
+/>
+<view>{{aaa}}</view>
+
+<!-- 直接选中组件修改数据/调用方法 -->
+<button size="mini" bind:tap="handleIncrementCpn">修改组件内的数据</button>
+<my-sel class="sel-class" id="sel-id"/>
+
+
+
+<view>-----------------------------</view>
+<!-- 单个插槽的使用 -->
+<my-slot>
+  <button>我是按钮</button>
+</my-slot>
+<my-slot>
+  <image src="http://s3.mogucdn.com/mlcdn/c45406/170915_0a93207ci28kelh617k4hh62l65lb_640x960.jpg"></image>
+</my-slot>
+<my-slot>
+  <slider value="80"></slider>
+</my-slot>
+
+<!-- 多个插槽的使用 -->
+<!-- 
+  使用多插槽的时候，插槽很多，不确定替换的是哪一个，要给每一个插槽起一个名字(name)，
+  而且必须在component对象中添加一个选项，options->multipleSlots:true
+ -->
+<my-mslot>
+  <button size="mini" slot="slot2">我是插入的按钮</button>
+  <slider slot="slot1"/>
+  <text slot="slot3">啊哈</text>
+</my-mslot>

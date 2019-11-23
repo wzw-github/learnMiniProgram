@@ -1,0 +1,6 @@
+
+<view>我是mslot组件的开始</view>
+<view class="class1"><slot name="slot1"/></view>
+<view class="class2"><slot name="slot2"/></view>
+<view class="class3"><slot name="slot3"/></view>
+<view>我是mslot组件的结尾</view>
